@@ -18,4 +18,8 @@ LANGUAGE ~English~ ~english~ ~%MOD_FOLDER%/tra/english/xafst.tra~
 BEGIN
 @0 /*@0=~BG2EE Forced Slayer Transform~*/
 
+SILENT
+
+COMPILE EVALUATE_BUFFER ~%MOD_FOLDER%/baf~
+
 
