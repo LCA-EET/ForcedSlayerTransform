@@ -1,0 +1,8 @@
+IF 
+    Die()
+    Global("[romancevariable]", "GLOBAL", 1000)
+THEN
+    RESPONSE #100
+        SetGlobal("XA_ST_SlayerTransform", "GLOBAL", 1)
+        Continue()
+END

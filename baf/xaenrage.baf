@@ -1,0 +1,11 @@
+IF 
+    Global("XA_ST_SlayerTransform", "GLOBAL", 1)
+THEN
+    RESPONSE #100
+        SetInterrupt(FALSE)
+        ActionOverride(Player1, ReallyForceSpellRES("SPIN823"))
+        DisplayStringHead(Player1, @0)
+        SetGlobal("XA_ST_SlayerTransform", "GLOBAL", 0)
+        SetInterrupt(TRUE)
+        Continue()
+END

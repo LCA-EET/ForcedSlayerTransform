@@ -1,0 +1,55 @@
+// Enter the script names of the potential romance characters
+
+ACTION_DEFINE_ARRAY xa_scriptNames
+	BEGIN
+		Aerie
+		Anomen
+		Jaheira
+		Viconia
+		XACORWIN
+	END
+
+// Enter the names of the variables associated with the aforementioned characters
+
+ACTION_DEFINE_ARRAY xa_romanceVariables
+	BEGIN
+		AerieRomanceActive
+		AnomenRomanceActive
+		JaheiraRomanceActive
+		ViconiaRomanceActive
+		XA_LC_CorwinRomanceActive
+	END
+
+// Enter the values of the aforementioned variables that indicate that the character is in a romance with Gorion's Ward
+
+ACTION_DEFINE_ARRAY xa_romanceVariableValues
+	BEGIN
+		2
+		2
+		2
+		2
+		2
+	END
+
+// Enter the BG2 bcs script designations of the aforementioned characters
+
+ACTION_DEFINE_ARRAY xa_BG2overrideFileNames
+	BEGIN
+		aerie.bcs
+		anomen.bcs
+		jaheira.bcs
+		viconia.bcs
+		xacorwin.bcs
+	END
+
+
+// Enter the ToB override bcs filenames of the aforementioned characters
+
+ACTION_DEFINE_ARRAY xa_ToBoverrideFileNames
+	BEGIN
+		aeri25.bcs
+		anom25.bcs
+		jahe25.bcs
+		vico25.bcs
+		xacor25.bcs
+	END
