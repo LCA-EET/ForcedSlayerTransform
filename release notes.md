@@ -4,5 +4,5 @@
 * Email: support@fosiemods.net
 * Discord Server: https://discord.gg/hwGf39gW9g
 
-## v1.0 2026-06-26
+## v1.0 2026-06-27
 * Initial release.
