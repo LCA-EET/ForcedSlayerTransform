@@ -1,6 +1,8 @@
 IF 
     Die()
-    Global("[romancevariable]", "GLOBAL", 1000)
+    Global("[romancevariable]", "GLOBAL", 32224)
+    TriggerOverride(Player1, HaveSpellRES("SPIN822"))
+    RandomNumLT(1,1)
 THEN
     RESPONSE #100
         SetGlobal("XA_ST_SlayerTransform", "GLOBAL", 1)

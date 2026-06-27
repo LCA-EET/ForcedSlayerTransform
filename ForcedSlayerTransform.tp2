@@ -9,7 +9,7 @@
 	THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CON TRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	*/
 //}
-BACKUP ~FST/backup~
+BACKUP ~ForcedSlayerTransform/backup~
 AUTHOR ~support@fosiemods.net~
 AUTO_TRA ~%MOD_FOLDER%/tra/%s~ //automatically associate .tras to their respective .D files
 AUTO_EVAL_STRINGS
@@ -21,5 +21,36 @@ BEGIN
 SILENT
 
 COMPILE EVALUATE_BUFFER ~%MOD_FOLDER%/baf~
+INCLUDE ~%MOD_FOLDER%/functions.tph~
+INCLUDE ~%MOD_FOLDER%/variables.txt~
 
+OUTER_SET xa_tempID = 0
 
+OUTER_SET arrayIndex = 0
+ACTION_PHP_EACH xa_scriptNames AS _ => scriptName 
+BEGIN
+	OUTER_SPRINT replacement1 $xa_romanceVariables(~%arrayIndex%~)
+	OUTER_SPRINT replacement2 $xa_romanceVariableValues(~%arrayIndex%~)
+	OUTER_SPRINT toExtendBG2 $xa_BG2overrideFileNames(~%arrayIndex%~)
+	OUTER_SPRINT toExtendToB $xa_ToBoverrideFileNames(~%arrayIndex%~)
+	PRINT ~Processing: %arrayIndex% : %replacement1% : %replacement2% : %toExtendBG2% : %toExtendToB%~
+	SILENT
+	LAF xa_replace_recompile_string4
+		STR_VAR
+			xa_strToReplace1 = ~\[romancevariable\]~
+			xa_replacement1 = ~%replacement1%~
+			xa_strToReplace2 = ~32224~
+			xa_replacement2 = ~%replacement2%~
+			xa_strToReplace3 = ~RandomNumLT(1,1)~
+			xa_replacement3 = ~RandomNumLT(%xa_demoninator%,%xa_numerator%)~
+			xa_bcs = ~xalovded~
+			xa_extend = ~%toExtendBG2%~
+	END
+	EXTEND_TOP ~%toExtendToB%.bcs~ ~%xa_tempID%.bcs~
+	OUTER_SET arrayIndex = arrayIndex + 1
+END
+
+EXTEND_TOP ~baldur.bcs~ ~override/xaenrage.bcs~
+EXTEND_TOP ~baldur25.bcs~ ~override/xaenrage.bcs~
+
+PRINT @1

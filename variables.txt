@@ -1,5 +1,14 @@
-// Enter the script names of the potential romance characters
+/* The numerator and demoninator are used to calculate the chance that Gorion's Ward will turn into the Slayer upon the death of their romance partner. The chance for transformation is calculated through the following formula:
 
+(numerator - 1) / denominator
+
+The default values for the numerator and demoninator are 2 and 2, respectively, so the chance of a transformation is (2 - 1) / 2 = 50%. Set the numerator to anything higher than the denominator to ensure a 100% chance of transformation.
+
+*/
+OUTER_SPRINT xa_numerator 2
+OUTER_SPRINT xa_demoninator 2
+
+// Enter the script names of the potential romance partners
 ACTION_DEFINE_ARRAY xa_scriptNames
 	BEGIN
 		Aerie
@@ -9,7 +18,7 @@ ACTION_DEFINE_ARRAY xa_scriptNames
 		XACORWIN
 	END
 
-// Enter the names of the variables associated with the aforementioned characters
+// Enter the names of the variables associated with the aforementioned partners
 
 ACTION_DEFINE_ARRAY xa_romanceVariables
 	BEGIN
@@ -20,7 +29,7 @@ ACTION_DEFINE_ARRAY xa_romanceVariables
 		XA_LC_CorwinRomanceActive
 	END
 
-// Enter the values of the aforementioned variables that indicate that the character is in a romance with Gorion's Ward
+// Enter the values of the aforementioned variables that indicate that the partner is in a romance with Gorion's Ward. The value is 2 for the vanilla BG2 characters. For modded characters (e.g. Corwin from Love Conquers All), consult the mod documentation or review the relevant D and BAF files.
 
 ACTION_DEFINE_ARRAY xa_romanceVariableValues
 	BEGIN
@@ -31,25 +40,25 @@ ACTION_DEFINE_ARRAY xa_romanceVariableValues
 		2
 	END
 
-// Enter the BG2 bcs script designations of the aforementioned characters
+// Enter the BG2 bcs script designations of the aforementioned partners. Do not include the .bcs extension in the filename.
 
 ACTION_DEFINE_ARRAY xa_BG2overrideFileNames
 	BEGIN
-		aerie.bcs
-		anomen.bcs
-		jaheira.bcs
-		viconia.bcs
-		xacorwin.bcs
+		aerie
+		anomen
+		jaheira
+		viconia
+		xacorwin
 	END
 
 
-// Enter the ToB override bcs filenames of the aforementioned characters
+// Enter the ToB override bcs filenames of the aforementioned partners. Do not include the .bcs extension in the filename.
 
 ACTION_DEFINE_ARRAY xa_ToBoverrideFileNames
 	BEGIN
-		aeri25.bcs
-		anom25.bcs
-		jahe25.bcs
-		vico25.bcs
-		xacor25.bcs
+		aeri25
+		anom25
+		jahe25
+		vico25
+		xacor25
 	END
