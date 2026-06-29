@@ -22,7 +22,7 @@ SILENT
 
 COMPILE EVALUATE_BUFFER ~%MOD_FOLDER%/baf~
 INCLUDE ~%MOD_FOLDER%/functions.tph~
-INCLUDE ~%MOD_FOLDER%/variables.txt~
+INCLUDE ~%MOD_FOLDER%/params.txt~
 
 OUTER_SET xa_tempID = 0
 

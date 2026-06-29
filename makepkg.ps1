@@ -1,48 +1,62 @@
-$currentDir = (Get-Location).Path
+$weiduApps		= @("weidu.exe", "weidu_linux")
+$weiduExts		= @(".exe", "")
+$weiduArchives 	= @("_win", "_linux")
+
 $basePath = "ForcedSlayerTransform"
 $tp2Name = "ForcedSlayerTransform"
 $modPath = $basePath + "/" + $tp2Name 
-$archive = $basePath + ".zip"
-$exePath = "setup-" + $tp2Name + ".exe"
-$folders= @(
+$exePath = "setup-" + $tp2Name
+$folders = @(
 'baf',
 'tra'
 )
 
-Remove-Item -LiteralPath $archive -Force
-Remove-Item -LiteralPath $basePath -Force -Recurse
-New-Item -Name $basePath -ItemType Directory
+foreach($weiduArchive in $weiduArchives){
+	Remove-Item -LiteralPath ($basePath + $weiduArchive + ".zip") -Force
+}
 
+Remove-Item -LiteralPath $basePath -Force -Recurse
 
 foreach($folder in $folders){
 	Copy-Item -Path $folder -Destination ($modPath + "/" + $folder) -Recurse	
 }
 
+& $PSScriptRoot/d_compactor.ps1 -dPath $modPath
+
 Copy-Item -Path ($tp2Name + ".tp2") -Destination $modPath 
-Copy-Item -Path "weidu.exe" -Destination ($basePath + "/" + $exePath)
+Copy-Item -Path "functions.tph" -Destination ($modPath + "/functions.tph")
+Copy-Item -Path "params.txt" -Destination ($modPath + "/params.txt")
+Copy-Item -Path "readme.md" -Destination ($modPath + "/readme.md")
+Copy-Item -Path "Discord Server.url" -Destination ($modPath + "/Discord Server.url")
+Copy-Item -Path "Venmo.url" -Destination ($modPath + "/Venmo.url")
+Copy-Item -Path "PayPal.url" -Destination ($modPath + "/PayPal.url")
+Copy-Item -Path "Release Notes.md" -Destination ($modPath + "/Release Notes.md")
 
-Copy-Item -Path "Discord Server.url" -Destination $modPath
-Copy-Item -Path "variables.txt" -Destination $modPath
-Copy-Item -Path "functions.tph" -Destination $modPath
+for ($i = 0; $i -lt $weiduApps.Length; $i++) {
+	if($i -gt 0){
+		Write-Output "Deleting " ($basePath + "/" + $exePath + $weiduExts[$i-1])
+		Remove-Item -LiteralPath ($basePath + "/" + $exePath + $weiduExts[$i-1])
+	}
+    Copy-Item -Path $weiduApps[$i] -Destination ($basePath + "/" + $exePath + $weiduExts[$i])
+	
+	$7zipPath = "$env:ProgramFiles/7-Zip/7z.exe"
 
-Get-Date -Format "yyyy-MM-dd HH:mm K" > pkgdate.txt
+	if (-not (Test-Path -Path $7zipPath -PathType Leaf)) {
+		$7zipPath = "F:/Program Files/7-Zip/7z.exe"
+	}
 
-Copy-Item -Path pkgdate.txt -Destination $modPath
-$Source = "./" + $basePath + "/*"
-$Target = "./" + $archive
-
-$7zipPath = "F:/Program Files/7-Zip/7z.exe"
-
-if(Test-Path -Path $7zipPath){
 	Set-Alias Start-SevenZip $7zipPath
+
+	$archive = $basePath + $weiduArchives[$i] + ".zip"
+	$Source = "./" + $basePath + "/*"
+	$Target = "./" + $archive
+
 	Start-SevenZip a -mx=9 $Target $Source
-}
-else{
-	#Linux
-	7z a -mx=9 $Target $Source
+
+	#Remove-Item -LiteralPath $basePath -Force -Recurse
+	#Get-FileHash $archive -Algorithm SHA256 > SHA256.txt
+
+	Copy-Item -Path $archive -Destination ("\\nas.home.lan\smbuser\Home\Installers\" + $archive)
 }
 
 Remove-Item -LiteralPath $basePath -Force -Recurse
-Get-FileHash $archive -Algorithm SHA256 > SHA256.txt
-
-Copy-Item -Path $archive -Destination ("\\nas.home.lan\smbuser\Home\Installers\" + $archive)
