@@ -1,14 +1,31 @@
-/* The numerator and demoninator are used to calculate the chance that Gorion's Ward will turn into the Slayer upon the death of their romance partner. The chance for transformation is calculated through the following formula:
-
-(numerator - 1) / denominator
-
-The default values for the numerator and demoninator are 2 and 2, respectively, so the chance of a transformation is (2 - 1) / 2 = 50%. Set the numerator to anything higher than the denominator to ensure a 100% chance of transformation.
-
+/*  REPUTATION PENALTY
+	Use the xa_reppenalty variable to set the reputation penalty incurred upon a forced Slayer transformation.
 */
+
+OUTER_SPRINT xa_reppenalty = 0
+
+/*  FORCED TRANSFORM WHEN GORION'S WARD IS NEAR DEATH
+	To force Gorion's Ward to change into the Slayer when their HP falls below a certain amount, adjust the xa_xfrmneardeath and xa_hppct variables accordingly. For example, if you wanted Gorion's Ward to transform into the Slayer when their current HP is less than or equal to 10% of their maximum HP, set xa_xfrmneardeath to 1 and xa_hppct to 10. To disable this feature, set xa_xfrmneardeath to 0. 
+*/
+
+OUTER_SPRINT xa_xfrmneardeath = 1
+OUTER_SPRINT xa_hppct = 10
+
+/* 	CHANCE TO TRANSFORM - DEATH OF ROMANCE PARTNER
+	The numerator and demoninator are used to calculate the chance that Gorion's Ward will turn into the Slayer upon the death of their romance partner. The chance for transformation is calculated through the following formula:
+
+	(numerator - 1) / denominator
+
+	The default values for the numerator and demoninator are 2 and 2, respectively, so the chance of a transformation is (2 - 1) / 2 = 50%. Set the numerator to anything higher than the denominator to ensure a 100% chance of transformation.
+*/
+
 OUTER_SPRINT xa_numerator 2
 OUTER_SPRINT xa_demoninator 2
 
-// Enter the script names of the potential romance partners
+/*  SCRIPT NAMES - ROMANCE PARTNERS
+	Enter the script names of the potential romance partners. NPCs introduced through mods (e.g. Corwin from LCA) can be added as well; consult the mod documentation for the script name(s).
+/*
+
 ACTION_DEFINE_ARRAY xa_scriptNames
 	BEGIN
 		Aerie
@@ -18,7 +35,9 @@ ACTION_DEFINE_ARRAY xa_scriptNames
 		XACORWIN
 	END
 
-// Enter the names of the variables associated with the aforementioned partners
+/* 	VARIABLE NAMES - ROMANCES
+	Enter the names of the variables associated with the aforementioned partners.
+*/
 
 ACTION_DEFINE_ARRAY xa_romanceVariables
 	BEGIN
@@ -29,7 +48,9 @@ ACTION_DEFINE_ARRAY xa_romanceVariables
 		XA_LC_CorwinRomanceActive
 	END
 
-// Enter the values of the aforementioned variables that indicate that the partner is in a romance with Gorion's Ward. The value is 2 for the vanilla BG2 characters. For modded characters (e.g. Corwin from Love Conquers All), consult the mod documentation or review the relevant D and BAF files.
+/* 	ROMANCE VARIABLE VALUES
+	Enter the values of the aforementioned variables that indicate that the partner is in a romance with Gorion's Ward. The value is 2 for the vanilla BG2 characters. For modded characters (e.g. Corwin from Love Conquers All), consult the mod documentation or review the relevant D and BAF files.
+*/
 
 ACTION_DEFINE_ARRAY xa_romanceVariableValues
 	BEGIN
@@ -40,7 +61,9 @@ ACTION_DEFINE_ARRAY xa_romanceVariableValues
 		2
 	END
 
-// Enter the BG2 bcs script designations of the aforementioned partners. Do not include the .bcs extension in the filename.
+/*  BG2 SOA BCS SCRIPT DESIGNATIONS - ROMANCE PARTNERS 
+	Enter the BG2 bcs script designations of the aforementioned partners. Do not include the .bcs extension in the filename.
+*/
 
 ACTION_DEFINE_ARRAY xa_BG2overrideFileNames
 	BEGIN
@@ -51,8 +74,9 @@ ACTION_DEFINE_ARRAY xa_BG2overrideFileNames
 		xacorwin
 	END
 
-
-// Enter the ToB override bcs filenames of the aforementioned partners. Do not include the .bcs extension in the filename.
+/*  ToB BCS SCRIPT DESIGNATIONS - ROMANCE PARTNERS
+	Enter the ToB override bcs filenames of the aforementioned partners. Do not include the .bcs extension in the filename.
+*/
 
 ACTION_DEFINE_ARRAY xa_ToBoverrideFileNames
 	BEGIN
