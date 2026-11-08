@@ -6,7 +6,7 @@ This mod causes Gorion's Ward to automatically transform into the Slayer upon ei
 
 You can adjust the following using params.txt:
 - Chance of a transformation upon the death of a romance partner. By default, the chance is 50%.
-- Reputation penalty for a forced Slayer transformation. By default, the penalty is two points.
+- Reputation penalty for a forced Slayer transformation. By default, there is no penalty.
 - HP percentage that triggers a transformation into the Slayer. By default, the threshold is 10%.
 
 Installation Instructions
