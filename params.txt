@@ -2,14 +2,14 @@
 	Use the xa_reppenalty variable to set the reputation penalty incurred upon a forced Slayer transformation.
 */
 
-OUTER_SPRINT xa_reppenalty = 0
+OUTER_SPRINT xa_reppenalty 0
 
 /*  FORCED TRANSFORM WHEN GORION'S WARD IS NEAR DEATH
 	To force Gorion's Ward to change into the Slayer when their HP falls below a certain amount, adjust the xa_xfrmneardeath and xa_hppct variables accordingly. For example, if you wanted Gorion's Ward to transform into the Slayer when their current HP is less than or equal to 10% of their maximum HP, set xa_xfrmneardeath to 1 and xa_hppct to 10. To disable this feature, set xa_xfrmneardeath to 0. 
 */
 
-OUTER_SPRINT xa_xfrmneardeath = 1
-OUTER_SPRINT xa_hppct = 10
+OUTER_SPRINT xa_xfrmneardeath 1
+OUTER_SPRINT xa_hppct 10
 
 /* 	CHANCE TO TRANSFORM - DEATH OF ROMANCE PARTNER
 	The numerator and demoninator are used to calculate the chance that Gorion's Ward will turn into the Slayer upon the death of their romance partner. The chance for transformation is calculated through the following formula:
@@ -24,7 +24,7 @@ OUTER_SPRINT xa_demoninator 2
 
 /*  SCRIPT NAMES - ROMANCE PARTNERS
 	Enter the script names of the potential romance partners. NPCs introduced through mods (e.g. Corwin from LCA) can be added as well; consult the mod documentation for the script name(s).
-/*
+*/
 
 ACTION_DEFINE_ARRAY xa_scriptNames
 	BEGIN

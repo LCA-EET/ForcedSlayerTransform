@@ -1,0 +1,23 @@
+IF 
+	HPPercentLT(Player1, 32224)
+	TriggerOverride(Player1, HaveSpellRES("SPIN822"))
+	GlobalLT("XA_ST_TransformationBlock", "GLOBAL", 1)
+THEN
+    RESPONSE #100
+        SetInterrupt(FALSE)
+        ActionOverride(Player1, ReallyForceSpellRES("SPIN823", Myself))
+        DisplayStringHead(Player1, @0)
+		SetGlobal("XA_ST_TransformationBlock", "GLOBAL", 1)
+		SetGlobal("XA_ST_TriggerRepPenalty", "GLOBAL", 1)
+        SetInterrupt(TRUE)
+        Continue()
+END
+
+IF
+	Global("XA_ST_TransformationBlock", "GLOBAL", 1)
+	!HPPercentLT(Player1, 32224)
+THEN
+	RESPONSE #100
+		SetGlobal("XA_ST_TransformationBlock", "GLOBAL", 0)
+		Continue()
+END

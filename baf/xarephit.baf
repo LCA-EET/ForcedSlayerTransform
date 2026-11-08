@@ -1,0 +1,10 @@
+IF
+	Global("XA_ST_TriggerRepPenalty", "GLOBAL", 1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("XA_ST_TriggerRepPenalty", "GLOBAL", 0)
+		ReputationInc(-32224)
+		SetInterrupt(TRUE)
+		Continue()
+END

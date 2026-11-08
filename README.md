@@ -1,9 +1,17 @@
 ## BG2EE Forced Slayer Transform
 
-This mod causes Gorion's Ward to automatically transform into the Slayer upon the death of their romance partner. For modded characters, edit the params.txt file prior to installation. You can also adjust the chance of a transform through editing the numerator and denominator parameters in params.txt.
+This mod causes Gorion's Ward to automatically transform into the Slayer upon either of the following triggers:
+- Their HP falls below a certain percentage; or 
+- The death of their romance partner.
+
+You can adjust the following using params.txt:
+- Chance of a transformation upon the death of a romance partner. By default, the chance is 50%.
+- Reputation penalty for a forced Slayer transformation. By default, the penalty is two points.
+- HP percentage that triggers a transformation into the Slayer. By default, the threshold is 10%.
 
 Installation Instructions
 - Download the release archive (https://github.com/LCA-EET/ForcedSlayerTransform/releases) and extract the contents to the game directory containing Baldur.exe.
+- Install this mod after any NPC mods. For modded characters, be sure to edit the params.txt file prior to installation. 
 
 Windows
 - Run setup-ForcedSlayerTransform.exe

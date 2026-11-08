@@ -26,6 +26,28 @@ INCLUDE ~%MOD_FOLDER%/params.txt~
 
 OUTER_SET xa_tempID = 0
 
+ACTION_IF(xa_xfrmneardeath = 1) THEN BEGIN
+	LAF xa_replace_recompile_string2 
+		STR_VAR
+			xa_strToReplace = ~32224~
+			xa_replacement = ~%xa_hppct%~
+			xa_bcs = ~xalowhp~
+			xa_extend = ~baldur~
+	END
+	EXTEND_TOP ~baldur25.bcs~ ~%xa_tempID%.bcs~
+END
+
+ACTION_IF !(xa_reppenalty = 0) THEN BEGIN
+	LAF xa_replace_recompile_string2 
+		STR_VAR
+			xa_strToReplace = ~32224~
+			xa_replacement = ~%xa_reppenalty%~
+			xa_bcs = ~xarephit~
+			xa_extend = ~baldur~
+	END
+	EXTEND_TOP ~baldur25.bcs~ ~%xa_tempID%.bcs~
+END
+
 OUTER_SET arrayIndex = 0
 ACTION_PHP_EACH xa_scriptNames AS _ => scriptName 
 BEGIN
